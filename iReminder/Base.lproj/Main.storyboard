@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9b3-aH-Kdo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FyZ-eA-zgA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Reminder Table View Controller-->
+        <!--Your Reminders-->
         <scene sceneID="YsF-dj-tYc">
             <objects>
                 <tableViewController id="9b3-aH-Kdo" customClass="ReminderTableViewController" customModule="iReminder" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReminderTableViewCell" rowHeight="90" id="aPd-xt-HhD" customClass="ReminderTableViewCell" customModule="iReminder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="90"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aPd-xt-HhD" id="iD5-7W-BW4">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
@@ -50,10 +50,13 @@
                             <outlet property="delegate" destination="9b3-aH-Kdo" id="K0J-QJ-wn3"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Your Reminders" id="pXf-PJ-3jf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tAx-Nk-hug"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKA-lY-Gpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319" y="250"/>
+            <point key="canvasLocation" x="493" y="250"/>
         </scene>
         <!--Reminder View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -116,7 +119,25 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="305" y="354"/>
+            <point key="canvasLocation" x="1117" y="354"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wWg-uJ-vlI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FyZ-eA-zgA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZRl-qX-7t2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9b3-aH-Kdo" kind="relationship" relationship="rootViewController" id="rAg-RT-XAy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yWx-8e-tAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-319" y="250"/>
         </scene>
     </scenes>
     <resources>
