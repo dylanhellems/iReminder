@@ -1,36 +1,24 @@
-//
-//  iReminderTests.swift
-//  iReminderTests
-//
-//  Created by Dylan Hellems on 2/21/16.
-//  Copyright © 2016 Dylan Hellems. All rights reserved.
-//
-
+import UIKit
 import XCTest
 @testable import iReminder
 
 class iReminderTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    // MARK: iReminder Tests
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    // Tests to confirm that the Reminder initializer returns when no name or a negative rating is provided.
+    func testReminderInitialization() {
+        
+        // Success case.
+        let potentialItem = Reminder(name: "Newest reminder", photo: nil, rating: 5)
+        XCTAssertNotNil(potentialItem)
+        
+        // Failure cases.
+        let noName = Reminder(name: "", photo: nil, rating: 0)
+        XCTAssertNil(noName, "Empty name is invalid")
+        
+        let badRating = Reminder(name: "Really bad rating", photo: nil, rating: -1)
+        XCTAssertNil(badRating, "Negative rating is invalid; be positive!")
     }
     
 }
