@@ -93,14 +93,24 @@ class ReminderTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
+    // MARK: Navigation
+    
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? ReminderViewController, reminder = sourceViewController.reminder {
+            
+            // Add a new reminder
+            let newIndexPath = NSIndexPath(forRow: reminders.count, inSection: 0)
+            reminders.append(reminder)
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        }
+    }
 
+    /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
