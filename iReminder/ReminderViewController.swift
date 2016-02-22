@@ -1,18 +1,16 @@
 //
-//  ViewController.swift
+//  ReminderViewController.swift
 //  iReminder
 //
 //  Created by Dylan Hellems on 2/21/16.
-//  Copyright © 2016 Dylan Hellems. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ReminderViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: Properties
-    
-    @IBOutlet weak var nameLabel: UILabel!
+
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
@@ -33,7 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        nameLabel.text = nameTextField.text
+        // TODO: replace
     }
     
     // MARK: UIImagePickerControllerDelegate

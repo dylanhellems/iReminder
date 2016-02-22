@@ -1,3 +1,10 @@
+//
+//  RatingControl.swift
+//  iReminder
+//
+//  Created by Dylan Hellems on 2/22/16.
+//
+
 import UIKit
 
 class RatingControl: UIView {

@@ -3,7 +3,6 @@
 //  iReminder
 //
 //  Created by Dylan Hellems on 2/21/16.
-//  Copyright © 2016 Dylan Hellems. All rights reserved.
 //
 
 import UIKit
