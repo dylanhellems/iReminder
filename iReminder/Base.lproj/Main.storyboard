@@ -72,6 +72,7 @@
                         <outlet property="imageView" destination="Wkf-eH-wpr" id="dzp-b0-lbo"/>
                         <outlet property="nameLabel" destination="Cmb-dw-j5D" id="QfC-tr-2cS"/>
                         <outlet property="nameTextField" destination="Hw3-u9-awe" id="plw-k0-HS1"/>
+                        <outlet property="ratingControl" destination="ToA-j3-NaI" id="ysZ-VL-CHi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

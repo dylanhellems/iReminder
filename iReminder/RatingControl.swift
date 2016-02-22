@@ -4,8 +4,15 @@ class RatingControl: UIView {
     
     // MARK: Properties
     
-    var rating = 0
+    var rating = 0 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
     var ratingButtons = [UIButton]()
+    
+    let stars = 5
+    let spacing = 5
 
     // MARK: Initialization
     
@@ -15,7 +22,7 @@ class RatingControl: UIView {
         let filledStarImage = UIImage(named: "filledStar")
         let emptyStarImage = UIImage(named: "emptyStar")
         
-        for _ in 0..<5 {
+        for _ in 0..<stars {
             let button = UIButton()
             button.setImage(emptyStarImage, forState: .Normal)
             button.setImage(filledStarImage, forState: .Selected)
@@ -31,7 +38,6 @@ class RatingControl: UIView {
     override func layoutSubviews() {
         // Set the button's width and height to a square the size of the frame's height.
         let buttonSize = Int(frame.size.height)
-        let spacing = 5
         
         var buttonFrame = CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize)
         
@@ -40,12 +46,12 @@ class RatingControl: UIView {
             buttonFrame.origin.x = CGFloat(index * (buttonSize + spacing))
             button.frame = buttonFrame
         }
+        
+        updateButtonSelectionStates()
     }
     
     override func intrinsicContentSize() -> CGSize {
         let buttonSize = Int(frame.size.height)
-        let spacing = 5
-        let stars = 5
         let width = (buttonSize + spacing) * stars
         
         return CGSize(width: width, height: buttonSize)
@@ -54,7 +60,15 @@ class RatingControl: UIView {
     // MARK: Button Action
     
     func ratingButtonTapped(button: UIButton) {
-        print("Button pressed 👍")
+        rating = ratingButtons.indexOf(button)! + 1
+        
+        updateButtonSelectionStates()
     }
 
+    func updateButtonSelectionStates() {
+        for (index, button) in ratingButtons.enumerate() {
+            // If the index of a button is less than the rating, that button should be selected.
+            button.selected = index < rating
+        }
+    }
 }
