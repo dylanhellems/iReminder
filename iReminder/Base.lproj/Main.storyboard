@@ -53,7 +53,7 @@
                     <navigationItem key="navigationItem" title="Your Reminders" id="pXf-PJ-3jf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="tAx-Nk-hug">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="9g3-7b-7ve"/>
+                                <segue destination="WYc-iF-Wyf" kind="presentation" identifier="AddItem" id="9g3-7b-7ve"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -62,7 +62,7 @@
             </objects>
             <point key="canvasLocation" x="493" y="250"/>
         </scene>
-        <!--Reminder View Controller-->
+        <!--New Reminder-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ReminderViewController" customModule="iReminder" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,7 +74,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SPO-SR-Fj7">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SPO-SR-Fj7">
                                 <rect key="frame" x="20" y="80" width="560" height="418"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter reminder name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hw3-u9-awe">
@@ -82,8 +82,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="Wkf-eH-wpr">
-                                        <rect key="frame" x="0.0" y="42" width="320" height="320"/>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="Wkf-eH-wpr">
+                                        <rect key="frame" x="120" y="42" width="320" height="320"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Wkf-eH-wpr" secondAttribute="height" multiplier="1:1" id="Lqe-rt-ai6"/>
@@ -92,8 +92,8 @@
                                             <outletCollection property="gestureRecognizers" destination="uub-As-xgB" appends="YES" id="VTd-uK-dvf"/>
                                         </connections>
                                     </imageView>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="ToA-j3-NaI" customClass="RatingControl" customModule="iReminder" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="374" width="240" height="44"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="ToA-j3-NaI" customClass="RatingControl" customModule="iReminder" customModuleProvider="target">
+                                        <rect key="frame" x="160" y="374" width="240" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
@@ -107,9 +107,13 @@
                         <constraints>
                             <constraint firstItem="SPO-SR-Fj7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="9kl-ZX-d31"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SPO-SR-Fj7" secondAttribute="trailing" id="hOq-fp-kgQ"/>
-                            <constraint firstItem="SPO-SR-Fj7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="wkz-sD-GbE"/>
+                            <constraint firstItem="SPO-SR-Fj7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="wkz-sD-GbE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="New Reminder" id="7cI-d3-66w">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vjE-M5-jVF"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JT5-v6-7tH"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="Wkf-eH-wpr" id="dzp-b0-lbo"/>
                         <outlet property="nameTextField" destination="Hw3-u9-awe" id="plw-k0-HS1"/>
@@ -123,7 +127,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1117" y="354"/>
+            <point key="canvasLocation" x="1929" y="354"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wWg-uJ-vlI">
@@ -142,6 +146,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWx-8e-tAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-319" y="250"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WVS-oc-x7P">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WYc-iF-Wyf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wu2-Ic-JM7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="jVs-pd-bPT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QdZ-u1-S68" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="354"/>
         </scene>
     </scenes>
     <resources>
