@@ -51,7 +51,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Your Reminders" id="pXf-PJ-3jf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tAx-Nk-hug"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tAx-Nk-hug">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="9g3-7b-7ve"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKA-lY-Gpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
