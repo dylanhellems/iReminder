@@ -17,15 +17,12 @@ class iReminderTests: XCTestCase {
     func testReminderInitialization() {
         
         // Success case.
-        let potentialItem = Reminder(name: "Newest reminder", photo: nil, rating: 5)
+        let potentialItem = Reminder(name: "Newest reminder", dateTime: NSDate(), description: "")
         XCTAssertNotNil(potentialItem)
         
         // Failure cases.
-        let noName = Reminder(name: "", photo: nil, rating: 0)
+        let noName = Reminder(name: "", dateTime: NSDate(), description: "")
         XCTAssertNil(noName, "Empty name is invalid")
-        
-        let badRating = Reminder(name: "Really bad rating", photo: nil, rating: -1)
-        XCTAssertNil(badRating, "Negative rating is invalid; be positive!")
     }
     
 }

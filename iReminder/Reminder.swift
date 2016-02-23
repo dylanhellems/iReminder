@@ -17,6 +17,7 @@ class Reminder {
     
     // MARK: Initlialization
     init?(name: String, dateTime: NSDate, description: String) {
+        
         // Initialize stored properties.
         self.name = name
         self.dateTime = dateTime

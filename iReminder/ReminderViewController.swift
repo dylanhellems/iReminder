@@ -17,8 +17,8 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UINavigatio
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     /*
-    This value is either passed by `MealTableViewController` in `prepareForSegue(_:sender:)`
-    or constructed as part of adding a new meal.
+    This value is either passed by `ReminderTableViewController` in `prepareForSegue(_:sender:)`
+    or constructed as part of adding a new reminder.
     */
     var reminder: Reminder?
 
@@ -34,7 +34,7 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UINavigatio
         // Set date picker's minimum date to current date
         datePicker.minimumDate = NSDate()
         
-        // Enable the Save button only if the text field has a valid Meal name
+        // Enable the Save button only if the text field has a valid reminder name
         checkValidReminderName()
     }
     
@@ -49,8 +49,10 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     func textFieldDidBeginEditing(textField: UITextField) {
         
-        // Disable the Save button while editing
-        saveButton.enabled = false
+        // Disable the Save button while editing name
+        if textField === nameTextField {
+            saveButton.enabled = false
+        }
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -74,7 +76,7 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UINavigatio
             let description = descriptionTextField.text ?? ""
             let dateTime = datePicker.date
             
-            // Set the meal to be passed to MealTableViewController after the unwind segue.
+            // Set the reminder to be passed to ReminderTableViewController after the unwind segue.
             reminder = Reminder(name: name, dateTime: dateTime, description: description)
         }
         
