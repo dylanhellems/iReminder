@@ -12,18 +12,18 @@ class Reminder {
     // MARK: Properties
     
     var name: String
-    var photo: UIImage?
-    var rating: Int
+    var dateTime: NSDate
+    var description: String?
     
     // MARK: Initlialization
-    init?(name: String, photo: UIImage?, rating: Int) {
+    init?(name: String, dateTime: NSDate, description: String) {
         // Initialize stored properties.
         self.name = name
-        self.photo = photo
-        self.rating = rating
+        self.dateTime = dateTime
+        self.description = description
         
-        // Initialization should fail if there is no name or if the rating is negative.
-        if name.isEmpty || rating < 0 {
+        // Initialization should fail if there is no name
+        if name.isEmpty {
             return nil
         }
     }

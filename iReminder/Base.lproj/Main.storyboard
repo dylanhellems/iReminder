@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -11,37 +10,35 @@
         <scene sceneID="YsF-dj-tYc">
             <objects>
                 <tableViewController id="9b3-aH-Kdo" customClass="ReminderTableViewController" customModule="iReminder" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="o17-kx-rD3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" id="o17-kx-rD3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReminderTableViewCell" rowHeight="90" id="aPd-xt-HhD" customClass="ReminderTableViewCell" customModule="iReminder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="90"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReminderTableViewCell" rowHeight="68" id="aPd-xt-HhD" customClass="ReminderTableViewCell" customModule="iReminder" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="68"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aPd-xt-HhD" id="iD5-7W-BW4">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="67"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nt-5a-q1i">
-                                            <rect key="frame" x="98" y="8" width="494" height="21"/>
+                                            <rect key="frame" x="8" y="8" width="584" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M5W-SI-jgq" customClass="RatingControl" customModule="iReminder" customModuleProvider="target">
-                                            <rect key="frame" x="98" y="37" width="240" height="44"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="6FT-py-gf3">
-                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
-                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZM-sN-ZHB">
+                                            <rect key="frame" x="8" y="37" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="dateTimeLabel" destination="cZM-sN-ZHB" id="sP8-Gw-O3r"/>
                                     <outlet property="nameLabel" destination="4nt-5a-q1i" id="ucw-pQ-Hq7"/>
-                                    <outlet property="photoImageView" destination="6FT-py-gf3" id="io7-1c-BaB"/>
-                                    <outlet property="ratingControl" destination="M5W-SI-jgq" id="EMo-uM-cfk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -75,39 +72,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SPO-SR-Fj7">
-                                <rect key="frame" x="20" y="80" width="560" height="418"/>
+                                <rect key="frame" x="20" y="80" width="560" height="300"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter reminder name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hw3-u9-awe">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter reminder name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hw3-u9-awe">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="Wkf-eH-wpr">
-                                        <rect key="frame" x="120" y="42" width="320" height="320"/>
-                                        <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Wkf-eH-wpr" secondAttribute="height" multiplier="1:1" id="Lqe-rt-ai6"/>
-                                        </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="uub-As-xgB" appends="YES" id="VTd-uK-dvf"/>
-                                        </connections>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="ToA-j3-NaI" customClass="RatingControl" customModule="iReminder" customModuleProvider="target">
-                                        <rect key="frame" x="160" y="374" width="240" height="44"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter description..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GA4-Ol-Qrh">
+                                        <rect key="frame" x="0.0" y="42" width="560" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                    <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="yo6-r5-4CD">
+                                        <rect key="frame" x="0.0" y="84" width="560" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="477874335.70848697">
+                                            <!--2016-02-22 22:52:15 +0000-->
+                                        </date>
+                                    </datePicker>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Hw3-u9-awe" firstAttribute="leading" secondItem="SPO-SR-Fj7" secondAttribute="leading" id="BzP-Az-hxY"/>
-                                    <constraint firstAttribute="trailing" secondItem="Hw3-u9-awe" secondAttribute="trailing" id="yvM-x4-yqg"/>
+                                    <constraint firstItem="yo6-r5-4CD" firstAttribute="leading" secondItem="SPO-SR-Fj7" secondAttribute="leading" id="DYB-Wg-4c6"/>
+                                    <constraint firstAttribute="trailing" secondItem="GA4-Ol-Qrh" secondAttribute="trailing" id="DfB-9U-hnK"/>
+                                    <constraint firstItem="Hw3-u9-awe" firstAttribute="leading" secondItem="SPO-SR-Fj7" secondAttribute="leading" id="Iyv-Rw-Hsz"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hw3-u9-awe" secondAttribute="trailing" id="ip9-so-G5g"/>
+                                    <constraint firstAttribute="trailing" secondItem="yo6-r5-4CD" secondAttribute="trailing" id="jaQ-ZF-Lku"/>
+                                    <constraint firstItem="GA4-Ol-Qrh" firstAttribute="leading" secondItem="SPO-SR-Fj7" secondAttribute="leading" id="w7s-6a-DnS"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="SPO-SR-Fj7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="9kl-ZX-d31"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="SPO-SR-Fj7" secondAttribute="trailing" id="hOq-fp-kgQ"/>
-                            <constraint firstItem="SPO-SR-Fj7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="wkz-sD-GbE"/>
+                            <constraint firstItem="SPO-SR-Fj7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Pmg-H8-Cjd"/>
+                            <constraint firstItem="SPO-SR-Fj7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="WeD-bv-SIS"/>
+                            <constraint firstItem="SPO-SR-Fj7" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="gUl-rI-TOI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Reminder" id="7cI-d3-66w">
@@ -123,9 +121,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageView" destination="Wkf-eH-wpr" id="dzp-b0-lbo"/>
+                        <outlet property="datePicker" destination="yo6-r5-4CD" id="DST-fz-fTy"/>
+                        <outlet property="descriptionTextField" destination="GA4-Ol-Qrh" id="CJF-pD-tkO"/>
                         <outlet property="nameTextField" destination="Hw3-u9-awe" id="plw-k0-HS1"/>
-                        <outlet property="ratingControl" destination="ToA-j3-NaI" id="ysZ-VL-CHi"/>
                         <outlet property="saveButton" destination="JT5-v6-7tH" id="NGk-68-6lJ"/>
                     </connections>
                 </viewController>
@@ -176,7 +174,4 @@
             <point key="canvasLocation" x="1117" y="354"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="defaultImage" width="320" height="320"/>
-    </resources>
 </document>

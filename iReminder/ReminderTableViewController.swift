@@ -15,25 +15,10 @@ class ReminderTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Load samplee data
-        loadSampleReminders()
     }
     
-    func loadSampleReminders() {
-        let photo1 = UIImage(named: "defaultImage")!
-        let reminder1 = Reminder(name: "Caprese Salad", photo: photo1, rating: 4)!
-        
-        let photo2 = UIImage(named: "emptyStar")!
-        let reminder2 = Reminder(name: "Chicken and Potatoes", photo: photo2, rating: 5)!
-        
-        let photo3 = UIImage(named: "filledStar")!
-        let reminder3 = Reminder(name: "Pasta with Meatballs", photo: photo3, rating: 3)!
-        
-        reminders += [reminder1, reminder2, reminder3]
-    }
 
-    // MARK: - Table view data source
+    // MARK: Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -52,8 +37,12 @@ class ReminderTableViewController: UITableViewController {
         let reminder = reminders[indexPath.row]
         
         cell.nameLabel.text = reminder.name
-        cell.photoImageView.image = reminder.photo
-        cell.ratingControl.rating = reminder.rating
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.timeStyle = .ShortStyle
+        
+        cell.dateTimeLabel.text = dateFormatter.stringFromDate(reminder.dateTime)
 
         return cell
     }

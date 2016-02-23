@@ -7,13 +7,13 @@
 
 import UIKit
 
-class ReminderViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ReminderViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
     // MARK: Properties
 
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var ratingControl: RatingControl!
+    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     /*
@@ -27,6 +27,12 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
         // Handle the text field’s user input through delegate callbacks
         nameTextField.delegate = self
+        
+        // Handle the text views’s user input through delegate callbacks
+        descriptionTextField.delegate = self
+        
+        // Set date picker's minimum date to current date
+        datePicker.minimumDate = NSDate()
         
         // Enable the Save button only if the text field has a valid Meal name
         checkValidReminderName()
@@ -59,62 +65,23 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UIImagePick
         saveButton.enabled = !text.isEmpty
     }
     
-    // MARK: UIImagePickerControllerDelegate
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        
-        // Dismiss the picker if the user canceled.
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        // The info dictionary contains multiple representations of the image, and this uses the original.
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        // Set photoImageView to display the selected image.
-        imageView.image = selectedImage
-        
-        // Dismiss the picker.
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     // MARK: Navigation
     
     // This method lets you configure a view controller before it's presented.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
             let name = nameTextField.text ?? ""
-            let photo = imageView.image
-            let rating = ratingControl.rating
+            let description = descriptionTextField.text ?? ""
+            let dateTime = datePicker.date
             
             // Set the meal to be passed to MealTableViewController after the unwind segue.
-            reminder = Reminder(name: name, photo: photo, rating: rating)
+            reminder = Reminder(name: name, dateTime: dateTime, description: description)
         }
         
     }
     
     @IBAction func cancel(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // MARK: Actions
-    
-    @IBAction func SelectImageFromPhotoLibrary(sender: UITapGestureRecognizer) {
-        
-        // Hide the keyboard.
-        nameTextField.resignFirstResponder()
-        
-        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        let imagePickerController = UIImagePickerController()
-        
-        // Only allow photos to be picked, not taken.
-        imagePickerController.sourceType = .PhotoLibrary
-        
-        // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self
-        
-        presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
 }
