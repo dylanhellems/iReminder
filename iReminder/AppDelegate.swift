@@ -4,6 +4,7 @@
 //
 //  Created by Dylan Hellems on 2/21/16.
 //
+// Relied on Start Developing iOS Apps (Swift) tutorial at https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/ for base table view app
 
 import UIKit
 
