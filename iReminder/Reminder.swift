@@ -14,8 +14,10 @@ class Reminder {
     var name: String
     var dateTime: NSDate
     var description: String?
+    var timer: NSTimer = NSTimer()
     
     // MARK: Initlialization
+    
     init?(name: String, dateTime: NSDate, description: String) {
         
         // Initialize stored properties.

@@ -12,11 +12,11 @@ class ReminderTableViewController: UITableViewController {
     // MARK: Properties
     
     var reminders = [Reminder]()
+    var timers = [NSTimer]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
 
     // MARK: Table view data source
 
@@ -62,25 +62,14 @@ class ReminderTableViewController: UITableViewController {
         }
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: Navigation
     
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? ReminderViewController, reminder = sourceViewController.reminder {
+            
+            let timeInterval = reminder.dateTime.timeIntervalSinceDate(NSDate())
+            reminder.timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "timerDidEnd:", userInfo: reminder.name, repeats: false)
+            timers += [reminder.timer]
             
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 
@@ -113,6 +102,28 @@ class ReminderTableViewController: UITableViewController {
             }
             
         }
+    }
+    
+    // MARK: Timer
+    
+    func timerDidEnd(timer: NSTimer) {
+        let alert = UIAlertController(title: "iReminder",
+            message: timer.userInfo as? String,
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: {
+            action in timer.invalidate()
+        }))
+        alert.addAction(UIAlertAction(title: "Postpone", style: UIAlertActionStyle.Default, handler: {
+            action in self.postponeTimer(alert)
+        }))
+        
+        presentViewController(alert, animated: true, completion:nil)
+    }
+    
+    func postponeTimer(alert: UIAlertController) {
+        let timeInterval = NSTimeInterval(60 * 60)
+        timers += [NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "timerDidEnd:", userInfo: alert.message, repeats: false)]
     }
     
 }
