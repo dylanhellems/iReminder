@@ -39,6 +39,7 @@
                                 <connections>
                                     <outlet property="dateTimeLabel" destination="cZM-sN-ZHB" id="sP8-Gw-O3r"/>
                                     <outlet property="nameLabel" destination="4nt-5a-q1i" id="ucw-pQ-Hq7"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="Ubb-T8-D4w"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -174,4 +175,7 @@
             <point key="canvasLocation" x="1117" y="354"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ubb-T8-D4w"/>
+    </inferredMetricsTieBreakers>
 </document>

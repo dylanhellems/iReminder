@@ -87,19 +87,37 @@ class ReminderTableViewController: UITableViewController {
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? ReminderViewController, reminder = sourceViewController.reminder {
             
-            // Add a new reminder
-            let newIndexPath = NSIndexPath(forRow: reminders.count, inSection: 0)
-            reminders.append(reminder)
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                
+                // Update an existing reminder
+                reminders[selectedIndexPath.row] = reminder
+                reminders.sortInPlace({ $0.dateTime.compare($1.dateTime) == .OrderedAscending })
+                let updatedIndexPath = NSIndexPath(forRow: reminders.indexOf( {$0 === reminder} )!, inSection: 0)
+                tableView.reloadRowsAtIndexPaths([updatedIndexPath], withRowAnimation: .None)
+            } else {
+            
+                // Add a new reminder
+                reminders.append(reminder)
+                reminders.sortInPlace({ $0.dateTime.compare($1.dateTime) == .OrderedAscending })
+                let newIndexPath = NSIndexPath(forRow: reminders.indexOf( {$0 === reminder} )!, inSection: 0)
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+            }
         }
     }
 
-    /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowDetail" {
+            let reminderDetailViewController = segue.destinationViewController as! ReminderViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedReminderCell = sender as? ReminderTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedReminderCell)!
+                let selectedReminder = reminders[indexPath.row]
+                reminderDetailViewController.reminder = selectedReminder
+            }
+            
+        }
     }
-    */
     
 }

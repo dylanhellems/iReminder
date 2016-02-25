@@ -31,6 +31,14 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UINavigatio
         // Handle the text views’s user input through delegate callbacks
         descriptionTextField.delegate = self
         
+        // Set up views if editing an existing Reminder
+        if let reminder = reminder {
+            navigationItem.title = reminder.name
+            nameTextField.text   = reminder.name
+            descriptionTextField.text = reminder.description
+            datePicker.date = reminder.dateTime
+        }
+        
         // Set date picker's minimum date to current date
         datePicker.minimumDate = NSDate()
         
@@ -83,7 +91,15 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
     
     @IBAction func cancel(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+        
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddMealMode {
+            dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            navigationController!.popViewControllerAnimated(true)
+        }
     }
     
 }
