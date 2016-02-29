@@ -122,7 +122,7 @@ class ReminderTableViewController: UITableViewController {
             action in self.postponeTimer()
         }))
         
-        presentViewController(alert, animated: true, completion:nil)
+        alert.show()
     }
     
     func dismissTimer() {
@@ -138,6 +138,7 @@ class ReminderTableViewController: UITableViewController {
     func postponeTimer() {
         let addHour = NSTimeInterval(60 * 60)
         reminders[0].dateTime = reminders[0].dateTime.dateByAddingTimeInterval(addHour)
+        reminders.sortInPlace({ $0.dateTime.compare($1.dateTime) == .OrderedAscending })
         let timeInterval = reminders[0].dateTime.timeIntervalSinceDate(NSDate())
         timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "timerDidEnd:", userInfo: reminders[0].name, repeats: false)
         
@@ -147,4 +148,32 @@ class ReminderTableViewController: UITableViewController {
         })
     }
     
+}
+
+// UIAlertController extension to allow show outside table view
+// credit to Aviel Gross; found at http://stackoverflow.com/questions/26554894/how-to-present-uialertcontroller-when-not-in-a-view-controller
+extension UIAlertController {
+    
+    func show() {
+        present(animated: true, completion: nil)
+    }
+    
+    func present(animated animated: Bool, completion: (() -> Void)?) {
+        if let rootVC = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            presentFromController(rootVC, animated: animated, completion: completion)
+        }
+    }
+    
+    private func presentFromController(controller: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        if  let navVC = controller as? UINavigationController,
+            let visibleVC = navVC.visibleViewController {
+                presentFromController(visibleVC, animated: animated, completion: completion)
+        } else
+            if  let tabVC = controller as? UITabBarController,
+                let selectedVC = tabVC.selectedViewController {
+                    presentFromController(selectedVC, animated: animated, completion: completion)
+            } else {
+                controller.presentViewController(self, animated: animated, completion: completion)
+        }
+    }
 }
