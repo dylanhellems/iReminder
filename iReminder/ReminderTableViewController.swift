@@ -114,13 +114,23 @@ class ReminderTableViewController: UITableViewController {
             preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: {
-            action in timer.invalidate()
+            action in self.dismissTimer()
         }))
         alert.addAction(UIAlertAction(title: "Postpone", style: UIAlertActionStyle.Default, handler: {
             action in self.postponeTimer()
         }))
         
         presentViewController(alert, animated: true, completion:nil)
+    }
+    
+    func dismissTimer() {
+        timer.invalidate()
+        reminders.removeAtIndex(0)
+        
+        // Refresh table view
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+        })
     }
     
     func postponeTimer() {
