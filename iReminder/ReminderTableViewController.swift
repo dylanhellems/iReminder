@@ -94,16 +94,18 @@ class ReminderTableViewController: UITableViewController {
         if segue.identifier == "ShowDetail" {
             let reminderDetailViewController = segue.destinationViewController as! ReminderViewController
             
-            // Get the cell that generated this segue.
+            // Get the cell that generated this segue
             if let selectedReminderCell = sender as? ReminderTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedReminderCell)!
                 let selectedReminder = reminders[indexPath.row]
                 reminderDetailViewController.reminder = selectedReminder
+                
+                if indexPath.row == 0 {
+                    timer.invalidate()
+                }
             }
             
         }
-        
-        timer.invalidate()
     }
     
     // MARK: Timer
