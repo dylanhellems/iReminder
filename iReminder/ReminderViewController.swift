@@ -40,7 +40,7 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UINavigatio
         }
         
         // Set date picker's minimum date to current date
-        datePicker.minimumDate = NSDate()
+        datePicker.minimumDate = NSDate().dateByAddingTimeInterval(NSTimeInterval(60))
         
         // Enable the Save button only if the text field has a valid reminder name
         checkValidReminderName()
@@ -82,7 +82,9 @@ class ReminderViewController: UIViewController, UITextFieldDelegate, UINavigatio
         if saveButton === sender {
             let name = nameTextField.text ?? ""
             let description = descriptionTextField.text ?? ""
-            let dateTime = datePicker.date
+            
+            let timeInterval = floor(datePicker.date.timeIntervalSinceReferenceDate / 60.0) * 60.0
+            let dateTime = NSDate(timeIntervalSinceReferenceDate: timeInterval)
             
             // Set the reminder to be passed to ReminderTableViewController after the unwind segue.
             reminder = Reminder(name: name, dateTime: dateTime, description: description)

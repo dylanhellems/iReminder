@@ -14,7 +14,6 @@ class Reminder {
     var name: String
     var dateTime: NSDate
     var description: String?
-    var timer: NSTimer = NSTimer()
     
     // MARK: Initlialization
     
@@ -25,8 +24,8 @@ class Reminder {
         self.dateTime = dateTime
         self.description = description
         
-        // Initialization should fail if there is no name
-        if name.isEmpty {
+        // Initialization should fail if there is no name or the date/time has already passed
+        if name.isEmpty || dateTime.compare(NSDate()) == .OrderedAscending {
             return nil
         }
     }

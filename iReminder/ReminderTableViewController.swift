@@ -12,7 +12,7 @@ class ReminderTableViewController: UITableViewController {
     // MARK: Properties
     
     var reminders = [Reminder]()
-    var timers = [NSTimer]()
+    var timer = NSTimer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,11 +66,6 @@ class ReminderTableViewController: UITableViewController {
     
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? ReminderViewController, reminder = sourceViewController.reminder {
-            
-            let timeInterval = reminder.dateTime.timeIntervalSinceDate(NSDate())
-            reminder.timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "timerDidEnd:", userInfo: reminder.name, repeats: false)
-            timers += [reminder.timer]
-            
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 
                 // Update an existing reminder
@@ -85,6 +80,11 @@ class ReminderTableViewController: UITableViewController {
                 reminders.sortInPlace({ $0.dateTime.compare($1.dateTime) == .OrderedAscending })
                 let newIndexPath = NSIndexPath(forRow: reminders.indexOf( {$0 === reminder} )!, inSection: 0)
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+            }
+            
+            if reminder === reminders[0] {
+                let timeInterval = reminder.dateTime.timeIntervalSinceDate(NSDate())
+                timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "timerDidEnd:", userInfo: reminder.name, repeats: false)
             }
         }
     }
@@ -102,6 +102,8 @@ class ReminderTableViewController: UITableViewController {
             }
             
         }
+        
+        timer.invalidate()
     }
     
     // MARK: Timer
@@ -115,15 +117,22 @@ class ReminderTableViewController: UITableViewController {
             action in timer.invalidate()
         }))
         alert.addAction(UIAlertAction(title: "Postpone", style: UIAlertActionStyle.Default, handler: {
-            action in self.postponeTimer(alert)
+            action in self.postponeTimer()
         }))
         
         presentViewController(alert, animated: true, completion:nil)
     }
     
-    func postponeTimer(alert: UIAlertController) {
-        let timeInterval = NSTimeInterval(60 * 60)
-        timers += [NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "timerDidEnd:", userInfo: alert.message, repeats: false)]
+    func postponeTimer() {
+        let addHour = NSTimeInterval(60 * 60)
+        reminders[0].dateTime = reminders[0].dateTime.dateByAddingTimeInterval(addHour)
+        let timeInterval = reminders[0].dateTime.timeIntervalSinceDate(NSDate())
+        timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "timerDidEnd:", userInfo: reminders[0].name, repeats: false)
+        
+        // Refresh table view
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+        })
     }
     
 }
