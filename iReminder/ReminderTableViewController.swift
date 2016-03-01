@@ -99,12 +99,7 @@ class ReminderTableViewController: UITableViewController {
                 let indexPath = tableView.indexPathForCell(selectedReminderCell)!
                 let selectedReminder = reminders[indexPath.row]
                 reminderDetailViewController.reminder = selectedReminder
-                
-                if indexPath.row == 0 {
-                    timer.invalidate()
-                }
             }
-            
         }
     }
     
